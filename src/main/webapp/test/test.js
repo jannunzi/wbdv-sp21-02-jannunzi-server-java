@@ -246,7 +246,7 @@ let $report = $(`
   <table>
       <thead>
         <tr>
-            <th colspan="2">
+            <th colspan="2" style="font-size: 2em;height: 40px;padding-top: 10px;">
                 <h3 id="state"></h3>
             </th>
         </tr>
@@ -299,9 +299,9 @@ const renderReport = (report) => {
     const percentScore = row.score*100.0/maxScore
     const $row = $(`
       <tr style="border-bottom: white; border-bottom-width: 1px; border-bottom-style: solid">
-          <td>${row.rule}</td>
+          <td style="padding: 4px">${row.rule}</td>
           <td width="200px">
-              <div style="width: ${percentScore}%; background-color: red">
+              <div style="width: ${percentScore}%; background-color: lightsalmon; padding: 4px">
                   ${row.score}
               </div>
           </td>
