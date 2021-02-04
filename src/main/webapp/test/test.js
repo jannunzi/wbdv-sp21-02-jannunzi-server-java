@@ -35,7 +35,7 @@ const main = () => {
   $("body").append($report)
   $tableBody = $("#table-body")
   // fetch("test/field-day.json")
-  fetch("http://lists-jga.herokuapp.com/sonos/test/field-day.json")
+  fetch("http://wd-sp21-02-java.herokuapp.com/test/field-day.json")
     .then(response => response.json())
     .then(rls => {
       rules = rls
