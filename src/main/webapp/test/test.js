@@ -1,25 +1,43 @@
 const states = [
   {selector: "#attract", wait: 5, title: "Start Listening"},
-    {selector: ".ARC.player.HTplayer.q4-player .q4-player-box", wait: 2, title: "Player 1"},
-    {selector: ".areaVideoBack", wait: 2, title: "Go Back Player 1"},
-    // {selector: ".q4-players-sliding-wrapper .BEAM.player.HTplayer.q4-player:nth-child(2)", wait: 2, title: "Player 1"},
-    // {selector: ".areaVideoBack", wait: 2, title: "Go Back"},
+  {selector: ".ARC.player.HTplayer.q4-player .q4-player-box", wait: 2, title: "Player 1"},
+  {selector: ".areaVideoBack", wait: 2, title: "Go Back Player 1"},
+  {selector: ".q4-player-compare", wait: 2, title: "Learn More"},
+  {selector: ".q2-pdp-specifications", wait: 2, title: "Specifications"},
+  {selector: ".q2-catalog-exit-specs-compare", wait: 2, title: "Close Specifications"},
+  {selector: ".q2-pdp-compare", wait: 2, title: "Compare"},
+  {selector: ".q2-catalog-exit-specs-compare", wait: 2, title: "Close Compare"},
+  {selector: ".q2-pdp-info-next", wait: 2, title: "Learn More Next 1"},
+  {selector: ".q2-pdp-info-next", wait: 2, title: "Learn More Next 2"},
+  {selector: ".q2-pdp-info-next", wait: 2, title: "Learn More Next 3"},
+  {selector: ".q2-pdp-photo-icons-next", wait: 2, title: "Photos Next 1"},
+  {selector: ".q2-pdp-photo-icons-next", wait: 2, title: "Photos Next 2"},
+  {selector: ".q2-pdp-photo-icons-next", wait: 2, title: "Photos Next 3"},
+  {selector: ".q2-pdp-photo-icons-next", wait: 2, title: "Photos Next 4"},
+  {selector: ".q2-pdp-photo-icons-next", wait: 2, title: "Photos Next 5"},
+  {selector: ".q2-pdp-photo-icons-next", wait: 2, title: "Photos Next 6"},
+  {selector: ".q2-pdp-photo-icons-next", wait: 2, title: "Photos Next 7"},
+  {selector: ".q2-pdp-photo-icons-next", wait: 2, title: "Photos Next 8"},
+  {selector: ".q2-pdp-photo-icons-next", wait: 2, title: "Photos Next 9"},
+  {selector: ".q2-pdp-page-close", wait: 2, title: "Learn More Close"},
+  // {selector: ".q4-players-sliding-wrapper .BEAM.player.HTplayer.q4-player:nth-child(2)", wait: 2, title: "Player 1"},
+  // {selector: ".areaVideoBack", wait: 2, title: "Go Back"},
 //  {selector: ".q2-top-menu-item.q2-top-menu-listen", wait: 2, title: "Listen"},
   {selector: ".q2-top-menu-item.q2-top-menu-about", wait: 2, title: "About Sonos"},
-    {selector: ".q2-about-menu-item:nth-child(2)", wait: 2, title: "Easy to use"},
-    {selector: ".q2-about-menu-item:nth-child(3)", wait: 2, title: "Listen your way"},
-    {selector: ".q2-about-menu-item:nth-child(4)", wait: 2, title: "Brilliant sound"},
-    {selector: ".q2-about-menu-item:nth-child(1)", wait: 2, title: "Why Sonos"},
+  {selector: ".q2-about-menu-item:nth-child(2)", wait: 2, title: "Easy to use"},
+  {selector: ".q2-about-menu-item:nth-child(3)", wait: 2, title: "Listen your way"},
+  {selector: ".q2-about-menu-item:nth-child(4)", wait: 2, title: "Brilliant sound"},
+  {selector: ".q2-about-menu-item:nth-child(1)", wait: 2, title: "Why Sonos"},
   {selector: ".q2-top-menu-item.q2-top-menu-features",  wait: 2, title: "Features"},
-    {selector: ".q2-catalog-right-scroll.q2-features.q2-features-view",  wait: 2, title: "Scroll Right 1"},
-    {selector: ".q2-catalog-right-scroll.q2-features.q2-features-view",  wait: 2, title: "Scroll Right 2"},
-    {selector: ".q2-catalog-right-scroll.q2-features.q2-features-view",  wait: 2, title: "Scroll Right 3"},
-    {selector: ".q2-catalog-right-scroll.q2-features.q2-features-view",  wait: 2, title: "Scroll Right 4"},
+  {selector: ".q2-catalog-right-scroll.q2-features.q2-features-view",  wait: 2, title: "Scroll Right 1"},
+  {selector: ".q2-catalog-right-scroll.q2-features.q2-features-view",  wait: 2, title: "Scroll Right 2"},
+  {selector: ".q2-catalog-right-scroll.q2-features.q2-features-view",  wait: 2, title: "Scroll Right 3"},
+  {selector: ".q2-catalog-right-scroll.q2-features.q2-features-view",  wait: 2, title: "Scroll Right 4"},
   {selector: ".q2-top-menu-item.q2-top-menu-listen", wait: 2, title: "Listen"},
-    {selector: ".BEAM.player.HTplayer.q4-player .q4-player-box", wait: 2, title: "Player 2"},
-    {selector: ".areaVideoBack", wait: 2, title: "Go Back Player 2"},
-    // {selector: ".q4-players-sliding-wrapper .player.q4-player:nth-child(2) .q4-player-box", wait: 2, title: "Player 1"},
-    // {selector: ".areaVideoBack", wait: 2, title: "Go Back"},
+  {selector: ".BEAM.player.HTplayer.q4-player .q4-player-box", wait: 2, title: "Player 2"},
+  {selector: ".areaVideoBack", wait: 2, title: "Go Back Player 2"},
+  // {selector: ".q4-players-sliding-wrapper .player.q4-player:nth-child(2) .q4-player-box", wait: 2, title: "Player 1"},
+  // {selector: ".areaVideoBack", wait: 2, title: "Go Back"},
 ]
 let rules = [
   ":root",
@@ -242,7 +260,7 @@ let rules = [
 
 let $report = $(`
 <textarea id="test-report" style='z-index:1000; position: fixed; left:0px; top:0px; width: 200px; height: 200px; opacity: 0%'></textarea>
-<div id="table-report" style='z-index:1000; position: fixed; left:0px; top:0px; bottom: 0px; width: 500px; overflow-y: scroll; background-color: white;'>
+<div id="table-report" style='z-index:1000; position: fixed; left:0px; top:0px; bottom: 0px; width: 500px; overflow-y: scroll; background-color: white; opacity: 80%'>
   <table>
       <thead>
         <tr>
@@ -331,8 +349,8 @@ const runTest = () => {
       })
       // console.log("=========")
       renderReport(report)
-    // }, ndx * 4000)
-      }, wait * 1000)
+      // }, ndx * 4000)
+    }, wait * 1000)
   })
 }
 
@@ -349,19 +367,19 @@ const click = (state) => {
   domElement = $(state.selector)[0]
 
   if(document.createEvent) {
-      const event = document.createEvent("MouseEvents");
-      event.initMouseEvent(
-        "click",
-        true, true,
-        window,
-        0, 0,0, 0, 0,
-        false, false, false, false, 0, null);
-      try {
-        const allowDefault = domElement.dispatchEvent(event);
-      } catch (e) {
-        console.log(state)
-        console.log($(state.selector))
-        console.log(e)
-      }
+    const event = document.createEvent("MouseEvents");
+    event.initMouseEvent(
+      "click",
+      true, true,
+      window,
+      0, 0,0, 0, 0,
+      false, false, false, false, 0, null);
+    try {
+      const allowDefault = domElement.dispatchEvent(event);
+    } catch (e) {
+      console.log(state)
+      console.log($(state.selector))
+      console.log(e)
+    }
   }
 }
