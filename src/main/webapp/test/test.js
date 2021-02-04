@@ -343,8 +343,8 @@ const handleClick = (e) => {
 
 const click = (state) => {
   $(state.selector).css({
-    "box-shadow": "0 4px 8px 0 lightgrey",
-    "background-color": "#aaaaaa"
+    "box-shadow": "0px 0px 10px 10px lightgrey",
+    // "background-color": "#bbbbbb"
   })
   domElement = $(state.selector)[0]
 
