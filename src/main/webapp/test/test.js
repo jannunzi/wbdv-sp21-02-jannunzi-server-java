@@ -6,16 +6,16 @@ const states = [
     // {selector: ".areaVideoBack", wait: 2, title: "Go Back"},
 //  {selector: ".q2-top-menu-item.q2-top-menu-listen", wait: 2, title: "Listen"},
   {selector: ".q2-top-menu-item.q2-top-menu-about", wait: 2, title: "About Sonos"},
-    {selector: ".q2-about-menu-item:nth-child(2)", wait: 1, title: "Easy to use"},
-    {selector: ".q2-about-menu-item:nth-child(3)", wait: 1, title: "Listen your way"},
-    {selector: ".q2-about-menu-item:nth-child(4)", wait: 1, title: "Brilliant sound"},
-    {selector: ".q2-about-menu-item:nth-child(1)", wait: 1, title: "Why Sonos"},
-  {selector: ".q2-top-menu-item.q2-top-menu-features",  wait: 1, title: "Features"},
-    {selector: ".q2-catalog-right-scroll.q2-features.q2-features-view",  wait: 1, title: "Scroll Right 1"},
-    {selector: ".q2-catalog-right-scroll.q2-features.q2-features-view",  wait: 1, title: "Scroll Right 2"},
-    {selector: ".q2-catalog-right-scroll.q2-features.q2-features-view",  wait: 1, title: "Scroll Right 3"},
-    {selector: ".q2-catalog-right-scroll.q2-features.q2-features-view",  wait: 1, title: "Scroll Right 4"},
-  {selector: ".q2-top-menu-item.q2-top-menu-listen", wait: 1, title: "Listen"},
+    {selector: ".q2-about-menu-item:nth-child(2)", wait: 2, title: "Easy to use"},
+    {selector: ".q2-about-menu-item:nth-child(3)", wait: 2, title: "Listen your way"},
+    {selector: ".q2-about-menu-item:nth-child(4)", wait: 2, title: "Brilliant sound"},
+    {selector: ".q2-about-menu-item:nth-child(1)", wait: 2, title: "Why Sonos"},
+  {selector: ".q2-top-menu-item.q2-top-menu-features",  wait: 2, title: "Features"},
+    {selector: ".q2-catalog-right-scroll.q2-features.q2-features-view",  wait: 2, title: "Scroll Right 1"},
+    {selector: ".q2-catalog-right-scroll.q2-features.q2-features-view",  wait: 2, title: "Scroll Right 2"},
+    {selector: ".q2-catalog-right-scroll.q2-features.q2-features-view",  wait: 2, title: "Scroll Right 3"},
+    {selector: ".q2-catalog-right-scroll.q2-features.q2-features-view",  wait: 2, title: "Scroll Right 4"},
+  {selector: ".q2-top-menu-item.q2-top-menu-listen", wait: 2, title: "Listen"},
     {selector: ".BEAM.player.HTplayer.q4-player .q4-player-box", wait: 2, title: "Player 2"},
     {selector: ".areaVideoBack", wait: 2, title: "Go Back Player 2"},
     // {selector: ".q4-players-sliding-wrapper .player.q4-player:nth-child(2) .q4-player-box", wait: 2, title: "Player 1"},
@@ -245,8 +245,10 @@ let $report = $(`
 <div id="table-report" style='z-index:1000; position: fixed; left:0px; top:0px; bottom: 0px; width: 500px; overflow-y: scroll; background-color: white;'>
   <table>
       <thead>
-        <tr colspan="2">
-            <th id="state"></th>
+        <tr>
+            <th colspan="2">
+                <h3 id="state"></h3>
+            </th>
         </tr>
       </thead>
       <tbody id="table-body"></tbody>
@@ -327,10 +329,10 @@ const runTest = () => {
           report[rule]++
         }
       })
-      console.log("=========")
+      // console.log("=========")
       renderReport(report)
-    }, ndx * 4000)
-  // }, wait * 1000)
+    // }, ndx * 4000)
+      }, wait * 1000)
   })
 }
 
