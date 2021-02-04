@@ -241,17 +241,36 @@ let rules = [
 ]
 
 let $report = $(`
-<textarea id="test-report" style='z-index:1000; position: fixed; left:0px; top:0px; width: 200px; height: 200px; opacity: 70%'></textarea>
-<div id="table-report" style='z-index:1000; position: fixed; left:200px; top:0px; bottom: 0px; width: 500px; overflow-y: scroll; background-color: white; opacity: 70%'>
+<textarea id="test-report" style='z-index:1000; position: fixed; left:0px; top:0px; width: 200px; height: 200px; opacity: 0%'></textarea>
+<div id="table-report" style='z-index:1000; position: fixed; left:0px; top:0px; bottom: 0px; width: 500px; overflow-y: scroll; background-color: white;'>
   <table>
+      <thead>
+        <tr colspan="2">
+            <th id="state"></th>
+        </tr>
+      </thead>
       <tbody id="table-body"></tbody>
   </table>
 </div>
 `)
 let $tableBody
+let $state
+let $tableReport
 const main = () => {
   $("body").append($report)
   $tableBody = $("#table-body")
+  $state = $("#state")
+  $tableReport = $("#table-report")
+  $tableReport.click(() => {
+    const hidden = $tableReport.hasClass("hidden")
+    if(hidden) {
+      $tableReport.css({opacity: "100%"})
+      $tableReport.removeClass("hidden")
+    } else {
+      $tableReport.css({opacity: "0%"})
+      $tableReport.addClass("hidden")
+    }
+  })
   // fetch("test/field-day.json")
   // fetch("http://wd-sp21-02-java.herokuapp.com/test/field-day.json")
   //   .then(response => response.json())
@@ -296,6 +315,7 @@ const runTest = () => {
     wait += state.wait
     setTimeout(() => {
       $report.append(`${state.title}\n`)
+      $state.html(state.title)
       click(state)
       rules.forEach(rule => {
         const length = $(rule).length
