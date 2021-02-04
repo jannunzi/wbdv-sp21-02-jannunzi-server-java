@@ -1,7 +1,7 @@
 const states = [
   {selector: "#attract", wait: 5, title: "Start Listening"},
   {selector: ".ARC.player.HTplayer.q4-player .q4-player-box", wait: 2, title: "Player 1"},
-  {selector: ".areaVideoBack", wait: 2, title: "Go Back Player 1"},
+  {selector: ".areaVideoBack", wait: 2, title: "Close Player 1"},
   {selector: ".q4-player-compare", wait: 2, title: "Learn More"},
   {selector: ".q2-pdp-specifications", wait: 2, title: "Specifications"},
   {selector: ".q2-catalog-exit-specs-compare", wait: 2, title: "Close Specifications"},
@@ -18,11 +18,7 @@ const states = [
   {selector: ".q2-pdp-photo-icons-next", wait: 2, title: "Photos Next 6"},
   {selector: ".q2-pdp-photo-icons-next", wait: 2, title: "Photos Next 7"},
   {selector: ".q2-pdp-photo-icons-next", wait: 2, title: "Photos Next 8"},
-  {selector: ".q2-pdp-photo-icons-next", wait: 2, title: "Photos Next 9"},
-  {selector: ".q2-pdp-page-close", wait: 2, title: "Learn More Close"},
-  // {selector: ".q4-players-sliding-wrapper .BEAM.player.HTplayer.q4-player:nth-child(2)", wait: 2, title: "Player 1"},
-  // {selector: ".areaVideoBack", wait: 2, title: "Go Back"},
-//  {selector: ".q2-top-menu-item.q2-top-menu-listen", wait: 2, title: "Listen"},
+  {selector: ".q2-pdp-page-close", wait: 2, title: "Close Learn More"},
   {selector: ".q2-top-menu-item.q2-top-menu-about", wait: 2, title: "About Sonos"},
   {selector: ".q2-about-menu-item:nth-child(2)", wait: 2, title: "Easy to use"},
   {selector: ".q2-about-menu-item:nth-child(3)", wait: 2, title: "Listen your way"},
@@ -35,9 +31,7 @@ const states = [
   {selector: ".q2-catalog-right-scroll.q2-features.q2-features-view",  wait: 2, title: "Scroll Right 4"},
   {selector: ".q2-top-menu-item.q2-top-menu-listen", wait: 2, title: "Listen"},
   {selector: ".BEAM.player.HTplayer.q4-player .q4-player-box", wait: 2, title: "Player 2"},
-  {selector: ".areaVideoBack", wait: 2, title: "Go Back Player 2"},
-  // {selector: ".q4-players-sliding-wrapper .player.q4-player:nth-child(2) .q4-player-box", wait: 2, title: "Player 1"},
-  // {selector: ".areaVideoBack", wait: 2, title: "Go Back"},
+  {selector: ".areaVideoBack", wait: 2, title: "Close Player 2"},
 ]
 let rules = [
   ":root",
@@ -284,10 +278,10 @@ const main = () => {
   $tableReport.click(() => {
     const hidden = $tableReport.hasClass("hidden")
     if(hidden) {
-      $tableReport.css({width: "500px"})
+      $tableReport.css({width: "500px", bottom: "0px"})
       $tableReport.removeClass("hidden")
     } else {
-      $tableReport.css({width: "50px"})
+      $tableReport.css({width: "50px", bottom: "90%"})
       $tableReport.addClass("hidden")
     }
   })
@@ -311,7 +305,6 @@ const renderReport = (report) => {
     maxScore = maxScore > score ? maxScore : score
   })
   reportTable.sort((a, b) => b.score - a.score)
-  // console.log(reportTable)
   $tableBody.empty()
   reportTable.forEach(row => {
     const percentScore = row.score*100.0/maxScore
@@ -320,7 +313,7 @@ const renderReport = (report) => {
           <td style="padding: 4px">${row.rule}</td>
           <td width="200px">
               <div style="width: ${percentScore}%; background-color: lightsalmon; padding: 4px">
-                  ${row.score}
+                  (${row.score}) ${percentScore}%
               </div>
           </td>
       </tr>`)
@@ -343,11 +336,9 @@ const runTest = () => {
           report[rule] = 0
         }
         if(length !== 0) {
-          // $report.append(`  ${rule}\n`)
           report[rule]++
         }
       })
-      // console.log("=========")
       renderReport(report)
       // }, ndx * 4000)
     }, wait * 1000)
@@ -361,8 +352,7 @@ const handleClick = (e) => {
 
 const click = (state) => {
   $(state.selector).css({
-    "box-shadow": "0px 0px 10px 10px white",
-    // "background-color": "#bbbbbb"
+    "box-shadow": "0px 0px 10px 10px white"
   })
   domElement = $(state.selector)[0]
 
