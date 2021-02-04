@@ -266,10 +266,10 @@ const main = () => {
   $tableReport.click(() => {
     const hidden = $tableReport.hasClass("hidden")
     if(hidden) {
-      $tableReport.css({opacity: "100%"})
+      $tableReport.css({width: "500px"})
       $tableReport.removeClass("hidden")
     } else {
-      $tableReport.css({opacity: "0%"})
+      $tableReport.css({width: "50px"})
       $tableReport.addClass("hidden")
     }
   })
