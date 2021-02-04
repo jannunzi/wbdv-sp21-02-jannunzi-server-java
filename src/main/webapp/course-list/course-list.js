@@ -1,22 +1,13 @@
-// alert("Welcome to JavaScript!")
-// console.log("Welcome to the JavaScript console!!!")
-var myHeader = jQuery("h1")
-// myHeader.remove()
-// jQuery("h1")
-myHeader
-  .html("Course List Editor!!!!")
-  .append(" - add/remove courses")
-  .prepend("Welcome to the ")
-  .css("background-color", "blue")
-  .click(function (event) {
-    // alert("Header was clicked!!!")
-    console.log(event.target)
-    var h1 = jQuery(event.target)
-    h1.css("background-color", "green")
-  })
-//
-var tableRows = jQuery("#table-rows")
-// tableRows.remove()
+var $tableRows
+var $createBtn
+var $updateBtn
+
+var $titleFld
+var $sectionFld
+var $seatsFld
+var $semesterFld
+
+var courseService = new CourseServiceClient()
 
 var courses = [
   {title: "CS4550", section: "02", seats: 23, semester: "Spring"},
@@ -26,11 +17,60 @@ var courses = [
   {title: "CS5200", section: "06", seats: 67, semester: "Spring"},
 ]
 
+function deleteCourse(event) {
+  var button = $(event.target)
+  var index = button.attr("id")
+  var id = courses[index]._id
+  courseService.deleteCourse(id)
+    .then(function (status) {
+      courses.splice(index, 1)
+      renderCourses(courses)
+    })
+}
+
+function createCourse() {
+  // alert("create course")
+  var newCourse = {
+    title: $titleFld.val(),
+    section: $sectionFld.val(),
+    seats: $seatsFld.val(),
+    semester: $semesterFld.val()
+  }
+
+  courseService.createCourse(newCourse)
+    .then(function (actualCourse) {
+      courses.push(actualCourse)
+      renderCourses(courses)
+    })
+}
+
+var selectedCourse = null
+function selectCourse(event) {
+  var id = $(event.target).attr("id")
+  console.log(id)
+  selectedCourse = courses.find(course => course._id === id)
+  $titleFld.val(selectedCourse.title)
+  $seatsFld.val(selectedCourse.seats)
+  $semesterFld.val(selectedCourse.semester)
+}
+
+function updateCourse() {
+  selectedCourse.title = $titleFld.val()
+  selectedCourse.semester = $semesterFld.val()
+  selectedCourse.seats = $seatsFld.val()
+  courseService.updateCourse(selectedCourse._id, selectedCourse)
+    .then(status => {
+      var index = courses.findIndex(course => course._id === selectedCourse._id)
+      courses[index] = selectedCourse
+      renderCourses(courses)
+    })
+}
+
 function renderCourses(courses) {
-  tableRows.empty()
+  $tableRows.empty()
   for(var i=0; i<courses.length; i++) {
     var course = courses[i]
-    tableRows
+    $tableRows
       .prepend(`
       <tr>
           <td>${course.title}</td>
@@ -39,30 +79,30 @@ function renderCourses(courses) {
           <td>${course.semester}</td>
           <td>
               <button id="${i}" class="neu-delete-btn">Delete</button>
-              <button>Select</button>
+              <button id="${course._id}" class="wbdv-select-btn">Select</button>
           </td>
       </tr>
       `)
   }
-  $(".neu-delete-btn").click(function (event) {
-    var button = $(event.target)
-    var id = button.attr("id")
-    console.log(id)
-    courses.splice(id, 1)
+  $(".neu-delete-btn").click(deleteCourse)
+  $(".wbdv-select-btn").click(selectCourse)
+}
+
+function main() {
+  $tableRows = jQuery("#table-rows")
+  $createBtn = $(".jga-create-btn")
+  $updateBtn = $(".wbdv-update-btn")
+
+  $titleFld = $(".wbdv-title-fld")
+  $seatsFld = $(".wbdv-seats-fld")
+  $sectionFld = $(".wbdv-section-fld")
+  $semesterFld = $(".wbdv-semester-fld")
+
+  $updateBtn.click(updateCourse)
+  $createBtn.click(createCourse)
+  courseService.findAllCourses().then(function (actualCourses) {
+    courses = actualCourses
     renderCourses(courses)
   })
 }
-renderCourses(courses)
-
-var createBtn = $(".jga-create-btn")
-createBtn.click(function () {
-  // alert("create course")
-  var newCourse = {
-    title: "NEW COURSE",
-    section: "NEW SECTION",
-    seats: 12,
-    semester: "SPRING"
-  }
-  courses.push(newCourse)
-  renderCourses(courses)
-})
+$(main)
