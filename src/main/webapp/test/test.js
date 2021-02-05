@@ -254,11 +254,14 @@ let rules = [
 
 let $report = $(`
 <textarea id="test-report" style='z-index:1000; position: fixed; left:0px; top:0px; width: 200px; height: 200px; opacity: 0%'></textarea>
-<div id="table-report" style='z-index:1000; position: fixed; left:0px; top:0px; bottom: 0px; width: 500px; overflow-y: scroll; background-color: white; opacity: 80%'>
-  <table>
+<div id="table-report" style='resize:both; z-index:1000; position: fixed; left:0px; top:0px; width: 25px; height: 25px; overflow-y: scroll; overflow-x:hidden; background-color: white; opacity: 85%'>
+  <table width="100%">
       <thead>
         <tr>
-            <th colspan="2" style="font-size: 2em;height: 40px;padding-top: 10px;">
+            <th style="font-size: 2em;height: 40px;padding-top: 15px;">
+                <h3>CSS Coverage</h3>
+            </th>
+            <th style="font-size: 2em;height: 40px;padding-top: 15px;">
                 <h3 id="state"></h3>
             </th>
         </tr>
@@ -275,16 +278,16 @@ const main = () => {
   $tableBody = $("#table-body")
   $state = $("#state")
   $tableReport = $("#table-report")
-  $tableReport.click(() => {
-    const hidden = $tableReport.hasClass("hidden")
-    if(hidden) {
-      $tableReport.css({width: "500px", bottom: "0px"})
-      $tableReport.removeClass("hidden")
-    } else {
-      $tableReport.css({width: "50px", bottom: "90%"})
-      $tableReport.addClass("hidden")
-    }
-  })
+  // $tableReport.click(() => {
+  //   const hidden = $tableReport.hasClass("hidden")
+  //   if(hidden) {
+  //     $tableReport.css({width: "500px", bottom: "0px"})
+  //     $tableReport.removeClass("hidden")
+  //   } else {
+  //     $tableReport.css({width: "50px", bottom: "90%"})
+  //     $tableReport.addClass("hidden")
+  //   }
+  // })
   // fetch("test/field-day.json")
   // fetch("http://wd-sp21-02-java.herokuapp.com/test/field-day.json")
   //   .then(response => response.json())
@@ -307,12 +310,12 @@ const renderReport = (report) => {
   reportTable.sort((a, b) => b.score - a.score)
   $tableBody.empty()
   reportTable.forEach(row => {
-    const percentScore = row.score*100.0/maxScore
+    const percentScore = Math.round(row.score*100.0/maxScore, 2)
     const $row = $(`
       <tr style="border-bottom: white; border-bottom-width: 1px; border-bottom-style: solid">
           <td style="padding: 4px">${row.rule}</td>
-          <td width="200px">
-              <div style="width: ${percentScore}%; background-color: lightsalmon; padding: 4px">
+          <td width="100%">
+              <div style="min-width: 60px; width: ${percentScore}%; background-color: ${percentScore === 0 ? 'lightsalmon': 'lightgreen'}; padding: 4px">
                   (${row.score}) ${percentScore}%
               </div>
           </td>
