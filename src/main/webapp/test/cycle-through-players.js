@@ -19,7 +19,11 @@
       const player = players[p]
       setTimeout(() => {
         click(player)
-      }, p * 1000)
+        setTimeout(() => {
+          const closeVideo = $(".areaVideoBack")
+          click(closeVideo)
+        }, p * 1000 + 1000)
+      }, p * 2000)
     }
   }
 
