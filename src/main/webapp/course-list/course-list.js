@@ -84,8 +84,6 @@ function renderCourses(courses) {
       </tr>
       `)
   }
-  $(".neu-delete-btn").click(deleteCourse)
-  $(".wbdv-select-btn").click(selectCourse)
 }
 
 function main() {
@@ -103,6 +101,8 @@ function main() {
   courseService.findAllCourses().then(function (actualCourses) {
     courses = actualCourses
     renderCourses(courses)
+    $(".neu-delete-btn").click(deleteCourse)
+    $(".wbdv-select-btn").click(selectCourse)
   })
 }
 $(main)
