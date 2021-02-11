@@ -6,9 +6,10 @@
 
   const runTest = () => {
     let wait = 0
-    setTimeout(() => {
-      openAllPlayers()
-    }, 7000)
+    openAllPlayers()
+    // setTimeout(() => {
+    //   openAllPlayers()
+    // }, 7000)
   }
 
   const openAllPlayers = () => {
