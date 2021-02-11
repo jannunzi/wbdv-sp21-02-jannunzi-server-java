@@ -9,7 +9,7 @@
     setTimeout(() => {
       click("#attract")
       cycleThroughPlayers()
-    }, 7000)
+    }, 1000)
   }
   let counter = 0
   let interval = null
