@@ -9,7 +9,7 @@
     setTimeout(() => {
       click("#attract")
       cycleThroughPlayers()
-    }, 2000)
+    }, 1000)
   }
 
   const cycleThroughPlayers = () => {
