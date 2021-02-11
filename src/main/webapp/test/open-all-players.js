@@ -20,7 +20,7 @@
       setTimeout(() => {
         click(player)
         $("#quickSubmit").click()
-      }, p * 1000)
+      }, p * 2000)
     }
   }
 

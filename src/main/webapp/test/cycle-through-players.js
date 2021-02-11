@@ -22,10 +22,10 @@
         clearInterval(interval)
       }
       console.log(counter, player)
-      $(player)
-        .css("border-color", "white")
-        .css("border-width", "10px")
-        .css("border-style", "solid")
+      // $(player)
+      //   .css("border-color", "white")
+      //   .css("border-width", "10px")
+      //   .css("border-style", "solid")
       click(player)
 
       setTimeout(() => {
