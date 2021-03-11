@@ -1,0 +1,43 @@
+package com.example.wbdvsp2102jannunziserverjava.services;
+
+import java.util.Date;
+import java.util.Calendar;
+
+public class HelloObject {
+    public Integer id;
+    public String name;
+    public Date today = new Date();
+
+    public HelloObject(Integer id, String name, Date today) {
+        this.id = id;
+        this.name = name;
+        this.today = today;
+    }
+
+    public HelloObject() {
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Date getToday() {
+        return today;
+    }
+
+    public void setToday(Date today) {
+        this.today = today;
+    }
+}
